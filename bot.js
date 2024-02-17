@@ -27,7 +27,7 @@ bot.on('message', (msg) => {
     } else {
         bot.sendMessage(chatId, '¡Hola! Soy Chewie, tu bot de Star Wars. ¿Cómo puedo ayudarte hoy?', {
             reply_markup: {
-                keyboard: [['people', 'films'], ['starships', 'vehicles'], ['species', 'planets']]
+                keyboard: [['Personajes👨‍👨‍👧‍👧', 'Películas📽'], ['Naves', 'Vehículos🛰'], ['Especies🐻', 'Planetas🪐']]
             }
         });
     }
