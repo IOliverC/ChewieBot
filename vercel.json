@@ -1,6 +1,21 @@
 {
     "version": 2,
-    "builds": [{ "src": "bot.js", "use": "@vercel/node" }],
-    "routes": [{ "src": "/(.*)", "dest": "/bot.js" }],
-    "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+    "builds": [
+        { 
+            "src": "bot.js", 
+            "use": "@vercel/node" 
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/" 
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/" 
+            }
+    ]
 }
