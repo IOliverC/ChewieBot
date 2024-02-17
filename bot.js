@@ -5,6 +5,16 @@ const axios = require('axios');
 const token = '6519624868:AAG706F1__E1TKIUl7JEYztC8WOBki-YyMQ';
 const bot = new TelegramBot(token, {polling: true});
 
+// Mapeo de categorías del español al inglés
+const categorias = {
+    'personajes': 'people',
+    'películas': 'films',
+    'naves': 'starships',
+    'vehículos': 'vehicles',
+    'especies': 'species',
+    'planetas': 'planets'
+};
+
 //Solicitud HTTP a la API
 function buscarEnSwapi(categoria) {
     return axios.get(`https://www.swapi.tech/api/${categoria}`)
@@ -18,8 +28,8 @@ bot.on('message', (msg) => {
     const mensajeUsuario = msg.text.toLowerCase();
 
     // Si el mensaje del usuario es una categoría válida, buscar en esa categoría en SWAPI
-    if (['people', 'films', 'starships', 'vehicles', 'species', 'planets'].includes(mensajeUsuario)) {
-        buscarEnSwapi(mensajeUsuario)
+    if (Object.keys(categorias).includes(mensajeUsuario)) {
+        buscarEnSwapi(categorias[mensajeUsuario])
             .then(data => {
                 const resultados = data.results.map(resultado => resultado.name).join(', ');
                 bot.sendMessage(chatId, `Resultados de ${mensajeUsuario}: ${resultados}`);
@@ -27,7 +37,7 @@ bot.on('message', (msg) => {
     } else {
         bot.sendMessage(chatId, '¡Hola! Soy Chewie, tu bot de Star Wars. ¿Cómo puedo ayudarte hoy?', {
             reply_markup: {
-                keyboard: [['Personajes👨‍👨‍👧‍👧', 'Películas📽'], ['Naves', 'Vehículos🛰'], ['Especies🐻', 'Planetas🪐']]
+                keyboard: [['Personajes👨‍👨‍👧‍👧', 'Películas📽'], ['Naves🚀', 'Vehículos🚠'], ['Especies🐻', 'Planetas🪐']]
             }
         });
     }
