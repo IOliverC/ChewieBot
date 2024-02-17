@@ -25,6 +25,10 @@ bot.on('message', (msg) => {
                 bot.sendMessage(chatId, `Resultados de ${mensajeUsuario}: ${resultados}`);
             });
     } else {
-        bot.sendMessage(chatId, '¡Hola! Soy Chewie, tu bot de Star Wars. ¿Cómo puedo ayudarte hoy?');
+        bot.sendMessage(chatId, '¡Hola! Soy Chewie, tu bot de Star Wars. ¿Cómo puedo ayudarte hoy?', {
+            reply_markup: {
+                keyboard: [['people', 'films'], ['starships', 'vehicles'], ['species', 'planets']]
+            }
+        });
     }
 });
