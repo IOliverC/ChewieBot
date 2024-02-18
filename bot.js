@@ -5,6 +5,24 @@ const axios = require('axios');
 const token = '6519624868:AAG706F1__E1TKIUl7JEYztC8WOBki-YyMQ';
 const bot = new TelegramBot(token, { polling: true });
 
+//modulo MYSQL 
+const mysql = require('mysql');
+
+var conexion = mysql.createConnection({
+    host: 'localhost',
+    database: 'usuario_db',
+    user: 'root',
+    password: ''
+});
+
+conexion.connect((err) => {
+    if (err) {
+        console.error('Error de conexión a la base de datos MySQL:', err);
+        return;
+    }
+    console.log('Conexión exitosa a la base de datos MySQL');
+});
+
 // Mapeo de categorías del español al inglés
 const categorias = {
     'personajes': 'people',
